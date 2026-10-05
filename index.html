@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="default">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GarimaOS · Data & AI Analyst</title>
+  <meta name="description" content="Garima Narang — Data Analyst · Business Analyst · AI Engineer with 7+ years experience in Python, SQL, Azure, Power BI, and RAG solutions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       DATA VISUALIZATION BACKGROUND
+  ═══════════════════════════════════════════ -->
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- ═══════════════════════════════════════════
+       SIDEBAR
+  ═══════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__logo">
+      <span class="sidebar__logo-icon">&gt;_</span>
+      <div>
+        <div class="sidebar__brand">GarimaOS</div>
+        <div class="sidebar__sub">Data · Business · AI Portfolio</div>
+      </div>
+    </div>
+
+    <nav class="sidebar__nav">
+      <a href="#home"     class="sidebar__link active" data-page="home">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        Home
+      </a>
+      <a href="#about"    class="sidebar__link" data-page="about">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        About
+      </a>
+      <a href="#projects" class="sidebar__link" data-page="projects">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Projects
+      </a>
+      <a href="#terminal" class="sidebar__link" data-page="terminal">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        Terminal
+      </a>
+      <a href="#medium" class="sidebar__link" data-page="medium">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Medium
+      </a>
+      <a href="#learning" class="sidebar__link" data-page="learning">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Learning Lab
+      </a>
+      <a href="#contact"  class="sidebar__link" data-page="contact">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact
+      </a>
+    </nav>
+
+    <div class="sidebar__theme">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <span class="sidebar__theme-label">Theme</span>
+      <select class="sidebar__theme-select" id="themeSelect">
+        <option value="default">Default</option>
+        <option value="matrix">Matrix</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </div>
+
+    <div class="sidebar__status">
+      <span class="sidebar__status-dot"></span>
+      <div class="sidebar__status-text">
+        Open to opportunities<br/>
+        <small>DA · BA · AI Engineer</small>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════
+       TOPBAR
+  ═══════════════════════════════════════════ -->
+  <div class="topbar">
+    <button class="topbar__hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="topbar__search" id="searchTrigger">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      Search GarimaOS…
+      <kbd>ctrl</kbd><kbd>k</kbd>
+    </div>
+  </div>
+
+  <!-- Search Modal -->
+  <div class="search-modal" id="searchModal">
+    <div class="search-modal__backdrop" id="searchBackdrop"></div>
+    <div class="search-modal__box">
+      <div class="search-modal__input-wrap">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search pages, projects, skills…" autocomplete="off" />
+        <kbd>esc</kbd>
+      </div>
+      <div class="search-modal__results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       MAIN CONTENT
+  ═══════════════════════════════════════════ -->
+  <main class="main" id="main">
+
+    <!-- ─── HOME ─── -->
+    <section class="page active" id="home">
+      <div class="page__inner">
+
+        <div class="availability-badge">
+          <span class="availability-dot"></span>
+          Available for Data Analyst · Business Analyst · AI Engineer roles
+        </div>
+
+        <div class="home__layout">
+          <div class="home__left">
+            <h1 class="home__title">
+              Data · Business · AI —<br/>
+              turning complex problems<br/>
+              into decisions that
+              <span class="home__title-accent">actually move the business._</span>
+            </h1>
+            <p class="home__desc">
+              7+ years building analytics pipelines, enterprise BI dashboards, and AI data products
+              across supply chain, finance, and operations. Currently at OpenText, where I also
+              delivered a production RAG application on Azure OpenAI + Pinecone + LangChain.
+            </p>
+            <div class="home__ctas">
+              <a href="#projects" class="btn btn--primary" data-nav="projects">Explore My Work →</a>
+              <a href="https://github.com/Narang-Garima" target="_blank" rel="noopener" class="btn btn--ghost">GitHub</a>
+            </div>
+            <div class="home__tags">
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Azure Stack</span>
+              <span class="tag">Power BI</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">Snowflake</span>
+              <span class="tag">dbt</span>
+            </div>
+            <div class="home__socials">
+              <a href="https://github.com/Narang-Garima" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/garima-narang-canada/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="mailto:naranggarima351@gmail.com" aria-label="Email">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Fake Terminal Widget -->
+          <div class="home__right">
+            <div class="terminal-widget">
+              <div class="terminal-widget__bar">
+                <span class="tw-dot tw-dot--red"></span>
+                <span class="tw-dot tw-dot--yellow"></span>
+                <span class="tw-dot tw-dot--green"></span>
+                <span class="tw-bar-title">&gt;_ terminal@garima</span>
+              </div>
+              <div class="terminal-widget__body">
+                <div class="tw-line"><span class="tw-prompt">garima@dataos:~$</span> <span class="tw-cmd">whoami</span></div>
+                <div class="tw-output">Garima Narang</div>
+                <div class="tw-output">Data Analyst · Business Analyst · AI Engineer</div>
+                <br/>
+                <div class="tw-line"><span class="tw-prompt">garima@dataos:~$</span> <span class="tw-cmd">stack --primary</span></div>
+                <div class="tw-output tw-output--accent">→ Python · SQL · Azure Data Factory</div>
+                <div class="tw-output tw-output--accent">→ Snowflake · dbt · Power BI · LangChain</div>
+                <br/>
+                <div class="tw-line"><span class="tw-prompt">garima@dataos:~$</span> <span class="tw-cmd">strengths</span></div>
+                <div class="tw-output">+ Data Pipelines &amp; ETL/ELT</div>
+                <div class="tw-output">+ Enterprise BI &amp; Dashboards</div>
+                <div class="tw-output">+ RAG &amp; AI Applications</div>
+                <div class="tw-output">+ ML Modelling &amp; Forecasting</div>
+                <br/>
+                <div class="tw-line"><span class="tw-prompt">garima@dataos:~$</span> <span class="tw-cmd">status</span></div>
+                <div class="tw-output tw-output--green">→ Open to data opportunities</div>
+                <br/>
+                <div class="tw-line tw-comment"># analytical_philosophy</div>
+                <div class="tw-output tw-output--muted">Question the data before the answer.</div>
+                <div class="tw-output tw-output--muted">Measure impact, not just accuracy.</div>
+                <div class="tw-output tw-output--muted">Build for the business, not the notebook.</div>
+                <br/>
+                <div class="tw-line"><span class="tw-prompt">garima@dataos:~$</span> <span class="tw-cursor">█</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats snapshot -->
+        <div class="home__stats">
+          <div class="stat">
+            <div class="stat__num"><span class="count" data-target="7">0</span>+</div>
+            <div class="stat__label">Years Experience</div>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <div class="stat__num"><span class="count" data-target="3">0</span></div>
+            <div class="stat__label">Companies</div>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <div class="stat__num"><span class="count" data-target="32">0</span></div>
+            <div class="stat__label">GitHub Repos</div>
+          </div>
+          <div class="stat__divider"></div>
+          <div class="stat">
+            <div class="stat__num"><span class="count" data-target="10">0</span>+</div>
+            <div class="stat__label">Medium Articles</div>
+          </div>
+        </div>
+
+        <!-- Selected Work preview -->
+        <div class="home__work">
+          <div class="home__work-header">
+            <div>
+              <div class="section__eyebrow">SELECTED WORK</div>
+              <h2 class="home__work-title">Featured projects_</h2>
+              <p class="home__work-sub">A selection of projects that best represent how I approach data engineering, analytics, and AI.</p>
+            </div>
+            <a href="#projects" class="home__work-all" data-nav="projects">All projects →</a>
+          </div>
+          <div class="home__work-grid">
+            <div class="work-card" data-project="rag">
+              <div class="work-card__top">
+                <div class="work-card__icon">📄</div>
+                <span class="work-card__type">RAG · Production</span>
+              </div>
+              <h3 class="work-card__title">Document Portal</h3>
+              <p class="work-card__desc">Enterprise RAG system — 8 doc formats, hybrid vector + BM25 retrieval, Docker, AWS ECS.</p>
+              <div class="work-card__tags"><span>FastAPI</span><span>LangChain</span><span>ChromaDB</span></div>
+              <a href="#projects" class="work-card__link" data-nav="projects">View case study →</a>
+            </div>
+            <div class="work-card" data-project="churn">
+              <div class="work-card__top">
+                <div class="work-card__icon">📈</div>
+                <span class="work-card__type">ML · Analytics</span>
+              </div>
+              <h3 class="work-card__title">Customer Churn &amp; LTV</h3>
+              <p class="work-card__desc">End-to-end ML platform — churn prediction + lifetime value, full pipeline to BI dashboard.</p>
+              <div class="work-card__tags"><span>Python</span><span>Scikit-learn</span><span>Power BI</span></div>
+              <a href="#projects" class="work-card__link" data-nav="projects">View case study →</a>
+            </div>
+            <div class="work-card" data-project="alzheimer">
+              <div class="work-card__top">
+                <div class="work-card__icon">🧬</div>
+                <span class="work-card__type">ML · Healthcare</span>
+              </div>
+              <h3 class="work-card__title">Alzheimer's Prediction</h3>
+              <p class="work-card__desc">74K+ patient records, Logistic Regression + Random Forest, Power BI risk dashboard.</p>
+              <div class="work-card__tags"><span>Scikit-learn</span><span>Power BI</span><span>EDA</span></div>
+              <a href="#projects" class="work-card__link" data-nav="projects">View case study →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technical toolkit preview -->
+        <div class="home__toolkit">
+          <div class="section__eyebrow">TECHNOLOGIES</div>
+          <h2 class="home__toolkit-title">Technical toolkit_</h2>
+          <p class="home__toolkit-sub">Data-focused. Enterprise-proven. AI-ready.</p>
+          <div class="toolkit-grid">
+            <div class="toolkit-col">
+              <div class="toolkit-col__label">Data &amp; Analytics</div>
+              <div class="toolkit-tags">
+                <span>Python</span><span>SQL</span><span>Pandas</span><span>Spark</span>
+                <span>Statistical Analysis</span><span>Forecasting</span>
+              </div>
+            </div>
+            <div class="toolkit-col">
+              <div class="toolkit-col__label">Pipelines &amp; Platforms</div>
+              <div class="toolkit-tags">
+                <span>Azure Data Factory</span><span>dbt</span><span>Airflow</span>
+                <span>Snowflake</span><span>Databricks</span><span>SQL Server</span>
+              </div>
+            </div>
+            <div class="toolkit-col">
+              <div class="toolkit-col__label">AI &amp; RAG</div>
+              <div class="toolkit-tags">
+                <span>Azure OpenAI</span><span>LangChain</span><span>Pinecone</span>
+                <span>Azure AI Search</span><span>RAG</span><span>MLflow</span>
+              </div>
+            </div>
+            <div class="toolkit-col">
+              <div class="toolkit-col__label">BI &amp; Visualisation</div>
+              <div class="toolkit-tags">
+                <span>Power BI</span><span>DAX</span><span>Tableau</span>
+                <span>Power Query</span><span>KPI Reporting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section class="page" id="about">
+      <div class="page__inner">
+
+        <div class="section__eyebrow">ABOUT ME</div>
+        <h1 class="page__title">Data curiosity turned into<br/>engineering discipline_</h1>
+
+        <div class="about__layout">
+          <div class="about__body">
+            <p>
+              My interest in data started not from statistics textbooks but from watching
+              how bad data quietly ruins business decisions. Early in my career at Tech Mahindra,
+              I watched supply chain teams make calls based on stale, unvalidated reports,
+              and I wanted to fix that at the source.
+            </p>
+            <p>
+              At <strong>Revelin7</strong>, I built the data quality infrastructure from the ground up,
+              including exception handling, quarantine patterns, and reconciliation logic, so that by
+              the time data reached a dashboard, someone had already asked hard questions about it.
+              I also led pipeline delivery across ADF, Databricks, Snowflake, and dbt while
+              mentoring junior analysts.
+            </p>
+            <p>
+              At <strong>OpenText</strong>, I went a layer further: enterprise analytics integrating
+              Snowflake, SQL Server, SAP, and Salesforce into Power BI and Tableau for executives,
+              plus a production RAG application using Azure OpenAI, Pinecone, and LangChain,
+              AI grounded in the same data infrastructure I built.
+            </p>
+            <p>
+              Completed my <strong>Master of Data Analytics</strong> at University of Niagara Falls
+              Canada, where I was honoured with the <strong>President's Award three times</strong> for
+              academic excellence, adding formal ML and statistical depth to a solid production
+              engineering foundation.
+            </p>
+          </div>
+
+          <div class="system-info">
+            <div class="system-info__header">
+              <span class="system-info__title">SYSTEM.INFO</span>
+              <span class="system-info__dot"></span>
+            </div>
+            <div class="system-info__row">
+              <div class="system-info__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <span>Data Analytics &amp; AI</span>
+            </div>
+            <div class="system-info__row">
+              <div class="system-info__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <span>Python / SQL / dbt</span>
+            </div>
+            <div class="system-info__row">
+              <div class="system-info__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <span>Azure · Snowflake · Power BI</span>
+            </div>
+            <div class="system-info__row">
+              <div class="system-info__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <span>Brampton, ON 🇨🇦</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education + Toolkit -->
+        <div class="about__cards">
+          <div class="about__edu-card">
+            <div class="about__edu-icon">🎓</div>
+            <div class="about__edu-label">EDUCATION</div>
+            <div class="about__edu-school">University of Niagara Falls Canada</div>
+            <div class="about__edu-degree">Master of Data Analytics</div>
+            <div class="about__edu-date">Oct 2024 – Mar 2026 · <span style="color:var(--green)">Completed</span></div>
+            <div style="margin-top:6px; display:flex; align-items:center; gap:6px; font-size:11.5px; color:var(--yellow)">
+              🏆 President's Award × 3 — Academic Excellence
+            </div>
+            <div class="about__edu-divider"></div>
+            <div class="about__edu-school">YIET · India</div>
+            <div class="about__edu-degree">MTech, Computer Science</div>
+            <div class="about__edu-date">Jul 2012 – May 2014</div>
+            <div class="about__edu-divider"></div>
+            <div class="about__edu-label" style="margin-top:8px">COURSEWORK</div>
+            <div class="about__edu-course">Machine learning, statistical modelling, data engineering, big data systems, applied AI</div>
+          </div>
+
+          <div class="about__toolkit-card">
+            <div class="about__toolkit-label">TECHNICAL TOOLKIT</div>
+            <div class="toolkit-section">
+              <div class="toolkit-section__title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                Data &amp; Analytics
+                <small>Core engineering focus</small>
+              </div>
+              <div class="toolkit-section__tags">
+                <span>Python</span><span>SQL</span><span>Pandas</span><span>Spark</span><span>Forecasting</span><span>Statistical Analysis</span>
+              </div>
+            </div>
+            <div class="toolkit-section">
+              <div class="toolkit-section__title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                Pipelines &amp; Platforms
+                <small>Ingestion and delivery</small>
+              </div>
+              <div class="toolkit-section__tags">
+                <span>Azure Data Factory</span><span>dbt</span><span>Airflow</span><span>Snowflake</span><span>Databricks</span><span>SQL Server</span>
+              </div>
+            </div>
+            <div class="toolkit-section">
+              <div class="toolkit-section__title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                AI &amp; RAG
+                <small>Language model pipelines</small>
+              </div>
+              <div class="toolkit-section__tags">
+                <span>Azure OpenAI</span><span>LangChain</span><span>Pinecone</span><span>Azure AI Search</span><span>ChromaDB</span><span>MLflow</span>
+              </div>
+            </div>
+            <div class="toolkit-section">
+              <div class="toolkit-section__title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="8" height="8"/><rect x="14" y="2" width="8" height="8"/><rect x="2" y="14" width="8" height="8"/><rect x="14" y="14" width="8" height="8"/></svg>
+                BI &amp; Visualisation
+                <small>Executive dashboards</small>
+              </div>
+              <div class="toolkit-section__tags">
+                <span>Power BI</span><span>DAX</span><span>Tableau</span><span>Power Query</span><span>KPI Reporting</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytical Principles -->
+        <div class="principles">
+          <div class="section__eyebrow">ANALYTICAL PRINCIPLES</div>
+          <p class="principles__sub">The ideas I apply when designing and reviewing data systems.</p>
+          <div class="principles__grid">
+            <div class="principle-card">
+              <div class="principle-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <h3>Question the data first</h3>
+              <p>I profile and validate before I model. Bad data upstream silently corrupts every insight downstream — find it early.</p>
+            </div>
+            <div class="principle-card">
+              <div class="principle-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h3>Measure business impact, not just accuracy</h3>
+              <p>A model with 92% accuracy that nobody uses is a failure. I measure outcomes in revenue, decisions, and operational change.</p>
+            </div>
+            <div class="principle-card">
+              <div class="principle-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <h3>Build for the decision-maker</h3>
+              <p>Dashboards exist to drive decisions, not to demonstrate technical skill. I design with the stakeholder's question in mind first.</p>
+            </div>
+            <div class="principle-card">
+              <div class="principle-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Reliability before complexity</h3>
+              <p>A simple pipeline that runs every day beats a sophisticated one that fails on Mondays. I ship things that teams can actually depend on.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── PROJECTS ─── -->
+    <section class="page" id="projects">
+      <div class="page__inner" id="projectsMain">
+
+        <div class="section__eyebrow">DATA &amp; AI WORK</div>
+        <h1 class="page__title">Projects_</h1>
+        <p class="page__desc">End-to-end data and AI projects — from pipelines and dashboards to RAG applications.</p>
+
+        <div class="projects__filters">
+          <button class="filter-btn active" data-filter="all">All projects</button>
+          <button class="filter-btn" data-filter="ai">AI &amp; RAG</button>
+          <button class="filter-btn" data-filter="ml">ML &amp; Analytics</button>
+          <button class="filter-btn" data-filter="bi">BI &amp; Pipelines</button>
+        </div>
+
+        <div class="projects__list">
+
+          <!-- Project 1 — Document Portal -->
+          <div class="project-row" data-category="ai" data-id="rag">
+            <div class="project-row__left">
+              <div class="project-row__category">RAG APPLICATION</div>
+              <div class="project-row__metric">28<span class="metric-unit"> test cases</span></div>
+              <div class="project-row__metric-sub">10-case DeepEval RAG quality suite</div>
+              <div class="project-row__arch">
+                <span>FastAPI</span>
+                <span>LangChain</span>
+                <span>ChromaDB</span>
+                <span>BM25</span>
+                <span>Docker</span>
+              </div>
+            </div>
+            <div class="project-row__right">
+              <div class="project-row__num">#1</div>
+              <span class="project-badge project-badge--ai">AI · RAG</span>
+              <h2 class="project-row__title">Document Portal — Enterprise RAG System</h2>
+              <div class="project-row__chips">
+                <span class="chip chip--green">Production</span>
+                <span class="chip">Personal Finance</span>
+                <span class="chip">Azure-first</span>
+              </div>
+              <p class="project-row__desc">
+                A production RAG platform that turns any document — PDF, DOCX, spreadsheets, SQL databases —
+                into something you can query with natural language. Cascading extraction, hybrid retrieval,
+                and per-user workspace isolation. Built with the same Azure-first approach used at OpenText.
+              </p>
+              <div class="project-row__highlights">
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Hybrid vector + BM25 with auto-weighted RRF reranking
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  8 document formats: PDF, DOCX, CSV, XLSX, JSON, TXT, MD, SQL
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Per-user workspace isolation with persistent session context
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  CI/CD via GitHub Actions → AWS ECS/Fargate deployment
+                </div>
+              </div>
+              <div class="project-row__tags">
+                <span>Python</span><span>FastAPI</span><span>LangChain</span><span>RAG</span><span>ChromaDB</span><span>Docker</span><span>AWS</span>
+              </div>
+              <button class="btn btn--case" data-open="rag">Explore case study →</button>
+            </div>
+          </div>
+
+          <!-- Project 2 — Churn & LTV -->
+          <div class="project-row" data-category="ml" data-id="churn">
+            <div class="project-row__left">
+              <div class="project-row__category">ML · ANALYTICS</div>
+              <div class="project-row__metric">End-to-end<span class="metric-unit"> ML platform</span></div>
+              <div class="project-row__metric-sub">Ingest → Features → Model → Dashboard</div>
+              <div class="project-row__arch">
+                <span>Python</span>
+                <span>Scikit-learn</span>
+                <span>Pandas</span>
+                <span>Power BI</span>
+              </div>
+            </div>
+            <div class="project-row__right">
+              <div class="project-row__num">#2</div>
+              <span class="project-badge project-badge--ml">ML · Analytics</span>
+              <h2 class="project-row__title">Customer Churn &amp; LTV Platform</h2>
+              <div class="project-row__chips">
+                <span class="chip chip--green">Completed</span>
+                <span class="chip">Customer Analytics</span>
+              </div>
+              <p class="project-row__desc">
+                End-to-end ML platform for predicting customer churn and lifetime value.
+                Full pipeline from data ingestion through feature engineering, model training,
+                evaluation, and business-ready Power BI dashboards — mirrors the churn work
+                done at OpenText.
+              </p>
+              <div class="project-row__highlights">
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Full feature engineering pipeline — recency, frequency, monetary signals
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Model comparison: Logistic Regression vs Random Forest vs XGBoost
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Business-ready Power BI dashboard with churn risk segments
+                </div>
+              </div>
+              <div class="project-row__tags">
+                <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>Power BI</span><span>XGBoost</span>
+              </div>
+              <button class="btn btn--case" data-open="churn">Explore case study →</button>
+            </div>
+          </div>
+
+          <!-- Project 3 — AI Prod Assistant -->
+          <div class="project-row" data-category="ai" data-id="aiassist">
+            <div class="project-row__left">
+              <div class="project-row__category">AI AGENT</div>
+              <div class="project-row__metric">LLM<span class="metric-unit">-powered</span></div>
+              <div class="project-row__metric-sub">Production workflow automation</div>
+              <div class="project-row__arch">
+                <span>Python</span>
+                <span>LangChain</span>
+                <span>AI Agents</span>
+                <span>LLMs</span>
+              </div>
+            </div>
+            <div class="project-row__right">
+              <div class="project-row__num">#3</div>
+              <span class="project-badge project-badge--ai">AI Agent</span>
+              <h2 class="project-row__title">AI Production Assistant</h2>
+              <div class="project-row__chips">
+                <span class="chip chip--green">Completed</span>
+                <span class="chip">Automation</span>
+              </div>
+              <p class="project-row__desc">
+                An LLM-powered assistant for production data workflows. Automates repetitive
+                analytical tasks and surfaces relevant context on demand, using modern agent
+                patterns and LLM tooling.
+              </p>
+              <div class="project-row__highlights">
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Agent-based architecture with tool use and memory
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Automates repetitive data analyst tasks via natural language
+                </div>
+              </div>
+              <div class="project-row__tags">
+                <span>Python</span><span>LLMs</span><span>AI Agents</span><span>LangChain</span>
+              </div>
+              <a href="https://github.com/Narang-Garima/AI-Prod-Assistant" target="_blank" rel="noopener" class="btn btn--case">GitHub →</a>
+            </div>
+          </div>
+
+          <!-- Project 4 — Alzheimer -->
+          <div class="project-row" data-category="ml" data-id="alzheimer">
+            <div class="project-row__left">
+              <div class="project-row__category">ML · HEALTHCARE</div>
+              <div class="project-row__metric">74,283<span class="metric-unit"> records</span></div>
+              <div class="project-row__metric-sub">Full EDA + model evaluation</div>
+              <div class="project-row__arch">
+                <span>Python</span>
+                <span>Scikit-learn</span>
+                <span>Power BI</span>
+                <span>Random Forest</span>
+              </div>
+            </div>
+            <div class="project-row__right">
+              <div class="project-row__num">#4</div>
+              <span class="project-badge project-badge--ml">ML · Healthcare</span>
+              <h2 class="project-row__title">Alzheimer's Disease Prediction</h2>
+              <div class="project-row__chips">
+                <span class="chip chip--green">Completed</span>
+                <span class="chip">Healthcare Analytics</span>
+              </div>
+              <p class="project-row__desc">
+                Analyzed 74,283 patient records to predict Alzheimer's using Logistic
+                Regression and Random Forest. Full EDA, data cleaning, model evaluation,
+                and a Power BI dashboard visualizing key risk indicators.
+              </p>
+              <div class="project-row__highlights">
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  74K+ patient records — comprehensive EDA and feature analysis
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Power BI risk factor dashboard for clinical interpretation
+                </div>
+              </div>
+              <div class="project-row__tags">
+                <span>Python</span><span>Scikit-learn</span><span>Power BI</span><span>Random Forest</span><span>EDA</span>
+              </div>
+              <a href="https://github.com/Narang-Garima/Alzheimer-Prediction-" target="_blank" rel="noopener" class="btn btn--case">GitHub →</a>
+            </div>
+          </div>
+
+          <!-- Project 5 — Pedestrian -->
+          <div class="project-row" data-category="bi" data-id="pedestrian">
+            <div class="project-row__left">
+              <div class="project-row__category">GIS · DATA VIZ</div>
+              <div class="project-row__metric">Road<span class="metric-unit"> network</span></div>
+              <div class="project-row__metric-sub">Walkability + busyness scores</div>
+              <div class="project-row__arch">
+                <span>Python</span>
+                <span>Folium</span>
+                <span>Power BI</span>
+                <span>GIS</span>
+              </div>
+            </div>
+            <div class="project-row__right">
+              <div class="project-row__num">#5</div>
+              <span class="project-badge project-badge--bi">GIS · BI</span>
+              <h2 class="project-row__title">Pedestrian Accessibility in Cayuga</h2>
+              <div class="project-row__chips">
+                <span class="chip chip--green">Completed</span>
+                <span class="chip">Urban Planning</span>
+              </div>
+              <p class="project-row__desc">
+                Assessed pedestrian accessibility using road network data. Created walkability
+                and busyness scores, visualized with interactive Folium maps and Power BI
+                dashboards to inform urban planning decisions.
+              </p>
+              <div class="project-row__highlights">
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Custom walkability scoring algorithm on road network graph
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Interactive Folium maps + Power BI for urban planning use
+                </div>
+              </div>
+              <div class="project-row__tags">
+                <span>Python</span><span>Folium</span><span>Power BI</span><span>GIS</span>
+              </div>
+              <a href="https://github.com/Narang-Garima/Pedestrian-Accessibility-in-Cayuga" target="_blank" rel="noopener" class="btn btn--case">GitHub →</a>
+            </div>
+          </div>
+
+          <!-- Project 6 — Bus Optimization -->
+          <div class="project-row" data-category="ml" data-id="bus">
+            <div class="project-row__left">
+              <div class="project-row__category">OPTIMISATION</div>
+              <div class="project-row__metric">5-stop<span class="metric-unit"> network</span></div>
+              <div class="project-row__metric-sub">3-bus fleet scheduling MIP</div>
+              <div class="project-row__arch">
+                <span>Python</span>
+                <span>MIP</span>
+                <span>Operations Research</span>
+              </div>
+            </div>
+            <div class="project-row__right">
+              <div class="project-row__num">#6</div>
+              <span class="project-badge project-badge--ml">Optimisation</span>
+              <h2 class="project-row__title">Bus Transit Schedule Optimisation</h2>
+              <div class="project-row__chips">
+                <span class="chip chip--green">Completed</span>
+                <span class="chip">Operations Research</span>
+              </div>
+              <p class="project-row__desc">
+                Mixed integer programming model for optimizing bus transit schedules.
+                Route optimization across a 5-stop network with a 3-bus fleet, minimizing
+                travel time and operational cost.
+              </p>
+              <div class="project-row__highlights">
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Mixed integer programming model for schedule optimization
+                </div>
+                <div class="project-highlight">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  Minimises both travel time and operational cost simultaneously
+                </div>
+              </div>
+              <div class="project-row__tags">
+                <span>Python</span><span>MIP</span><span>Operations Research</span>
+              </div>
+              <a href="https://github.com/Narang-Garima/Optimization-Bus-transit-schedule" target="_blank" rel="noopener" class="btn btn--case">GitHub →</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Case Study Panels (hidden until opened) -->
+      <div class="case-study" id="case-rag">
+        <div class="page__inner">
+          <button class="case-study__back" data-close="rag">← Back to projects</button>
+          <div class="case-study__chips">
+            <span class="chip chip--green">Production</span>
+            <span class="chip">RAG Application</span>
+            <span class="chip">Azure-first</span>
+          </div>
+          <h1 class="case-study__title">Document Portal — Enterprise RAG System_</h1>
+          <p class="case-study__intro">
+            A production RAG platform that turns any document into something you can query with natural language.
+            Built with the same Azure-first approach used at OpenText: cascading extraction, hybrid retrieval,
+            and per-user workspace isolation.
+          </p>
+          <a href="https://github.com/Narang-Garima/document-portal" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+
+          <div class="case-study__meta-card">
+            <div class="case-study__metric">28 test cases<br/><small>10-case DeepEval RAG quality suite</small></div>
+            <div class="case-study__stack">
+              <div class="case-study__stack-label">TECH STACK</div>
+              <div class="toolkit-section__tags">
+                <span>FastAPI</span><span>LangChain</span><span>ChromaDB</span><span>BM25</span>
+                <span>Gemini Vision</span><span>Docker</span><span>GitHub Actions</span><span>AWS ECS</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-study__highlights-grid">
+            <div class="section__eyebrow" style="grid-column:1/-1">DATA ENGINEERING HIGHLIGHTS</div>
+            <div class="cs-highlight">Hybrid vector + BM25 retrieval with auto-weighted RRF reranking for high-precision document search</div>
+            <div class="cs-highlight">8 document formats supported via cascading extraction with format-specific fallback logic</div>
+            <div class="cs-highlight">Per-user workspace isolation — persistent session context without data leakage across users</div>
+            <div class="cs-highlight">Full CI/CD: GitHub Actions → Docker build → AWS ECS/Fargate production deployment</div>
+          </div>
+
+          <div class="case-study__two-col">
+            <div>
+              <div class="section__eyebrow">CONTEXT</div>
+              <h2>The Problem_</h2>
+              <p>Enterprise teams drown in documents. PDFs of contracts, Excel reports, SQL data exports, Word specs — all searchable only by Ctrl+F or human memory. I wanted to build the same kind of semantic search infrastructure I had access to at OpenText, but open-source, portable, and actually deployable by a solo engineer.</p>
+            </div>
+            <div>
+              <div class="section__eyebrow">CONSTRAINTS</div>
+              <h2>Data Challenges_</h2>
+              <ul>
+                <li>Mixed document formats with wildly different extraction complexity (scanned PDFs vs structured XLSX)</li>
+                <li>Maintaining retrieval quality across 8 formats without format-specific tuning for each</li>
+                <li>Per-user isolation without a full auth system adding overhead</li>
+                <li>Evaluating RAG quality rigorously — not just "does it return something"</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="case-study__two-col">
+            <div>
+              <div class="section__eyebrow">DECISIONS</div>
+              <h2>Engineering Decisions_</h2>
+              <ul>
+                <li>Chose BM25 + vector hybrid over pure semantic — keyword matches matter for exact terminology in enterprise docs</li>
+                <li>RRF reranking auto-weights across retrieval methods — no manual tuning per document type</li>
+                <li>Gemini Vision for scanned PDFs — handles image-based content that text parsers miss</li>
+                <li>DeepEval for RAG evaluation — faithfulness, relevance, and context precision as first-class metrics</li>
+              </ul>
+            </div>
+            <div>
+              <div class="section__eyebrow">EVOLUTION</div>
+              <h2>Next Steps_</h2>
+              <ul>
+                <li>Add Azure AI Search as a production vector store option alongside ChromaDB</li>
+                <li>Fine-tune chunk size strategy per document type based on evaluation results</li>
+                <li>Add conversation memory for multi-turn querying across sessions</li>
+                <li>Extend to Snowflake and live SQL data sources for real-time enterprise queries</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Churn Case Study -->
+      <div class="case-study" id="case-churn">
+        <div class="page__inner">
+          <button class="case-study__back" data-close="churn">← Back to projects</button>
+          <div class="case-study__chips">
+            <span class="chip chip--green">Completed</span>
+            <span class="chip">ML · Analytics</span>
+            <span class="chip">Customer Intelligence</span>
+          </div>
+          <h1 class="case-study__title">Customer Churn &amp; LTV Platform_</h1>
+          <p class="case-study__intro">
+            End-to-end ML platform for predicting customer churn and lifetime value. Full pipeline
+            from ingestion through feature engineering, model training, evaluation, and business-ready
+            dashboards — mirrors the churn prediction work done at OpenText.
+          </p>
+          <a href="https://github.com/Narang-Garima/Customer-Churn-LTV-Platform" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <div class="case-study__meta-card">
+            <div class="case-study__metric">Full ML Pipeline<br/><small>Ingest → Features → Train → Dashboard</small></div>
+            <div class="case-study__stack">
+              <div class="case-study__stack-label">TECH STACK</div>
+              <div class="toolkit-section__tags">
+                <span>Python</span><span>Scikit-learn</span><span>Pandas</span><span>XGBoost</span><span>Power BI</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-study__two-col">
+            <div>
+              <div class="section__eyebrow">CONTEXT</div>
+              <h2>The Problem_</h2>
+              <p>Churn models at most companies live in notebooks and never reach the business team. I built this to demonstrate the full journey: clean data in, interpretable predictions out, business dashboard at the end — no gaps.</p>
+            </div>
+            <div>
+              <div class="section__eyebrow">DECISIONS</div>
+              <h2>Modelling Decisions_</h2>
+              <ul>
+                <li>RFM feature engineering — Recency, Frequency, Monetary as core churn signals</li>
+                <li>Three-model comparison — Logistic Regression (interpretable baseline), Random Forest, XGBoost</li>
+                <li>SHAP values for feature importance — stakeholders can see *why* a customer is at risk</li>
+                <li>Power BI dashboard segmented by churn risk tier for direct business action</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ─── MEDIUM ─── -->
+    <section class="page" id="medium">
+      <div class="page__inner">
+        <div class="section__eyebrow">WRITING</div>
+        <h1 class="page__title">Medium Articles_</h1>
+        <p class="page__desc">Writing about data, AI, and the craft of analytics. Published on Medium.</p>
+
+        <div class="medium__header">
+          <a href="https://medium.com/@garimanarang2407" target="_blank" rel="noopener" class="btn btn--ghost btn--sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            View all on Medium →
+          </a>
+        </div>
+
+        <div class="medium__grid">
+
+          <a class="medium-card medium-card--featured" href="https://medium.com/@garimanarang2407/behind-the-scenes-a-rag-chatbot-on-google-cloud-abd6a0f2b6c0" target="_blank" rel="noopener">
+            <div class="medium-card__tag">RAG · AI</div>
+            <h3 class="medium-card__title">Behind the Scenes: A RAG Chatbot on Google Cloud</h3>
+            <p class="medium-card__desc">How to build a smart airline assistant using RAG architecture on Google Cloud — from embeddings to deployment.</p>
+            <div class="medium-card__meta">Oct 29, 2025 · Featured</div>
+          </a>
+
+          <a class="medium-card medium-card--featured" href="https://medium.com/@garimanarang2407/building-an-intelligent-multi-agent-system-for-research-and-report-generation-ee844b7cbc01" target="_blank" rel="noopener">
+            <div class="medium-card__tag">AI Agents</div>
+            <h3 class="medium-card__title">Building an Intelligent Multi-Agent System for Research and Report Generation</h3>
+            <p class="medium-card__desc">How I built a hierarchical AI system that researches, summarizes, and writes professional reports automatically.</p>
+            <div class="medium-card__meta">Sep 29, 2025 · Featured</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/from-bytes-to-better-cities-my-entry-into-big-data-and-urban-intelligence-30b88be76965" target="_blank" rel="noopener">
+            <div class="medium-card__tag">Big Data · GIS</div>
+            <h3 class="medium-card__title">From Bytes to Better Cities: My Entry into Big Data and Urban Intelligence</h3>
+            <p class="medium-card__desc">Big Data as the nervous system of our digital world — my transition into data science and urban analytics.</p>
+            <div class="medium-card__meta">Oct 28, 2025</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/conquering-the-curse-of-dimensionality-a-beginners-journey-with-pca-920b97703811" target="_blank" rel="noopener">
+            <div class="medium-card__tag">ML · PCA</div>
+            <h3 class="medium-card__title">Conquering the Curse of Dimensionality: A Beginner's Journey with PCA</h3>
+            <p class="medium-card__desc">How I learned to stop worrying about high dimensions and love Principal Component Analysis.</p>
+            <div class="medium-card__meta">Sep 19, 2025</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/the-last-minute-k-means-clustering-revision-sheet-12477d4fd747" target="_blank" rel="noopener">
+            <div class="medium-card__tag">ML · Clustering</div>
+            <h3 class="medium-card__title">The Last-Minute K-Means Clustering Revision Sheet</h3>
+            <p class="medium-card__desc">Core steps, the math goal, and the critical things you need to know about K-Means before an interview.</p>
+            <div class="medium-card__meta">Oct 3, 2025</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/last-minute-machine-learning-lifecycle-df2ac6fcdb38" target="_blank" rel="noopener">
+            <div class="medium-card__tag">ML · Revision</div>
+            <h3 class="medium-card__title">Last Minute: Machine Learning Lifecycle</h3>
+            <p class="medium-card__desc">Quick revision — the complete ML lifecycle jotted into digestible points for last-minute prep.</p>
+            <div class="medium-card__meta">Oct 19, 2025</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/sql-interview-prep-mastering-weight-grouping-questions-a-strategic-approach-42c465e6ab86" target="_blank" rel="noopener">
+            <div class="medium-card__tag">SQL · Interview</div>
+            <h3 class="medium-card__title">SQL Interview Prep: Mastering Weight Grouping Questions</h3>
+            <p class="medium-card__desc">A strategic approach to solving SQL weight grouping problems — one of the most common interview question types.</p>
+            <div class="medium-card__meta">Sep 30, 2025</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/i-was-so-lost-and-maybe-you-are-too-my-journey-from-confused-data-newbie-to-actually-f4b00b12f7a3" target="_blank" rel="noopener">
+            <div class="medium-card__tag">Career · Data</div>
+            <h3 class="medium-card__title">I Was So Lost: My Journey from Confused Data Newbie to Actually Getting It</h3>
+            <p class="medium-card__desc">How I went from staring blankly at datasets to figuring out what businesses actually need from data.</p>
+            <div class="medium-card__meta">Sep 28, 2025</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/my-journey-solving-the-stock-profit-problem-a-learning-log-52f0a2d31134" target="_blank" rel="noopener">
+            <div class="medium-card__tag">DSA · Python</div>
+            <h3 class="medium-card__title">My Journey Solving the Stock Profit Problem: A Learning Log</h3>
+            <p class="medium-card__desc">Documenting the thought process behind solving a classic algorithm problem — from confusion to clarity.</p>
+            <div class="medium-card__meta">Oct 2, 2025</div>
+          </a>
+
+          <a class="medium-card" href="https://medium.com/@garimanarang2407/breaking-down-the-matrix-reshape-problem-my-thought-process-201872cf9602" target="_blank" rel="noopener">
+            <div class="medium-card__tag">DSA · Python</div>
+            <h3 class="medium-card__title">Breaking Down the Matrix Reshape Problem: My Thought Process</h3>
+            <p class="medium-card__desc">Step-by-step thought process when first encountering the LeetCode Matrix Reshape problem.</p>
+            <div class="medium-card__meta">Sep 20, 2025</div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── TERMINAL ─── -->
+    <section class="page" id="terminal">
+      <div class="page__inner">
+        <div class="section__eyebrow">TERMINAL</div>
+        <h1 class="page__title">Interactive mode_</h1>
+        <p class="page__desc">A playful command-line interface for exploring this portfolio. Type <code>help</code> to begin.</p>
+
+        <div class="terminal-full">
+          <div class="terminal-full__bar">
+            <span class="tw-dot tw-dot--red"></span>
+            <span class="tw-dot tw-dot--yellow"></span>
+            <span class="tw-dot tw-dot--green"></span>
+            <span class="tw-bar-title">&gt;_ terminal@garima</span>
+          </div>
+          <div class="terminal-full__body" id="terminalBody">
+            <div class="term-line term-line--welcome">Welcome to GarimaOS Terminal. Type <span class="term-cmd">help</span> to begin.</div>
+            <div class="term-line"><span class="term-prompt">garima@dataos:~$</span> <span class="term-cursor-blink">█</span></div>
+          </div>
+          <div class="terminal-full__input-row">
+            <span class="term-prompt">garima@dataos:~$</span>
+            <input type="text" class="terminal-full__input" id="termInput" placeholder="Type a command…" autocomplete="off" spellcheck="false" />
+          </div>
+        </div>
+
+        <div class="terminal-help">
+          <div class="section__eyebrow" style="margin-bottom:12px">AVAILABLE COMMANDS</div>
+          <div class="terminal-cmds">
+            <div class="terminal-cmd"><code>whoami</code><span>About Garima</span></div>
+            <div class="terminal-cmd"><code>stack</code><span>Full technical stack</span></div>
+            <div class="terminal-cmd"><code>projects</code><span>List all projects</span></div>
+            <div class="terminal-cmd"><code>medium</code><span>Medium articles</span></div>
+            <div class="terminal-cmd"><code>experience</code><span>Work history</span></div>
+            <div class="terminal-cmd"><code>education</code><span>Academic background</span></div>
+            <div class="terminal-cmd"><code>contact</code><span>Contact information</span></div>
+            <div class="terminal-cmd"><code>status</code><span>Current availability</span></div>
+            <div class="terminal-cmd"><code>skills --ai</code><span>AI &amp; RAG skills</span></div>
+            <div class="terminal-cmd"><code>skills --data</code><span>Data engineering skills</span></div>
+            <div class="terminal-cmd"><code>clear</code><span>Clear terminal</span></div>
+            <div class="terminal-cmd"><code>help</code><span>Show this list</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <!-- ─── LEARNING LAB — AGENTIC AI ─── -->
+    <section class="page" id="learning">
+      <div class="page__inner">
+
+        <h1 class="page__title" style="margin-bottom:8px;">Learning Lab_</h1>
+        <p style="color:var(--text-2,#8b949e);font-size:0.85rem;margin-bottom:32px;">
+          End-to-end Agentic AI · Strands SDK · Hands-on Design Doc Generator
+        </p>
+
+        <!-- ══════════════════════════════════════════
+             SECTION 1: WHAT IS AGENTIC AI?
+        ══════════════════════════════════════════ -->
+        <div class="learn-card" style="background:var(--card-bg,#161b22);border:1px solid var(--border,rgba(255,255,255,0.08));border-radius:12px;padding:28px;margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="font-size:1.6rem;">🧠</span>
+            <h2 style="font-size:1.1rem;font-weight:700;">What is Agentic AI?</h2>
+          </div>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div style="background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:14px;">
+              <div style="font-size:0.7rem;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">❌ Traditional AI</div>
+              <code style="font-size:0.75rem;color:#8b949e;font-family:'JetBrains Mono',monospace;line-height:1.8;">
+                user → prompt<br/>
+                model → response<br/>
+                <strong style="color:#ef4444;">DONE.</strong> (one shot)
+              </code>
+            </div>
+            <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:14px;">
+              <div style="font-size:0.7rem;font-weight:700;color:#10b981;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;">✅ Agentic AI</div>
+              <code style="font-size:0.75rem;color:#8b949e;font-family:'JetBrains Mono',monospace;line-height:1.8;">
+                user → GOAL<br/>
+                agent → think()<br/>
+                agent → pick_tool()<br/>
+                agent → run_tool()<br/>
+                agent → observe()<br/>
+                <strong style="color:#10b981;">→ loops until done</strong>
+              </code>
+            </div>
+          </div>
+
+          <p style="font-size:0.82rem;color:#8b949e;line-height:1.7;">
+            <strong style="color:#e6edf3;">The key shift:</strong> Instead of answering a single question, an Agentic AI
+            has a <em>goal</em>, a set of <em>tools (skills)</em>, and an autonomous <em>loop</em> — 
+            it decides <em>how</em> to accomplish the goal by calling tools in sequence, observing results, 
+            and adapting its plan. This is exactly how humans work on complex projects.
+          </p>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             SECTION 2: STRANDS SDK ARCHITECTURE
+        ══════════════════════════════════════════ -->
+        <div class="learn-card" style="background:var(--card-bg,#161b22);border:1px solid var(--border,rgba(255,255,255,0.08));border-radius:12px;padding:28px;margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="font-size:1.6rem;">⚙️</span>
+            <h2 style="font-size:1.1rem;font-weight:700;">Strands SDK — System Architecture</h2>
+          </div>
+
+          <p style="font-size:0.82rem;color:#8b949e;line-height:1.6;margin-bottom:16px;">
+            <strong style="color:#e6edf3;">Strands Agents</strong> is AWS's open-source Python SDK for building agentic systems.
+            Three concepts power everything:
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px;">
+            <div style="background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;padding:14px;text-align:center;">
+              <div style="font-size:1.4rem;margin-bottom:6px;">📜</div>
+              <div style="font-size:0.8rem;font-weight:700;color:#3b82f6;margin-bottom:4px;">System Prompt</div>
+              <div style="font-size:0.72rem;color:#8b949e;">The agent's personality, role, rules, and output format.</div>
+            </div>
+            <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:14px;text-align:center;">
+              <div style="font-size:1.4rem;margin-bottom:6px;">🔧</div>
+              <div style="font-size:0.8rem;font-weight:700;color:#f59e0b;margin-bottom:4px;">Tools (Skills)</div>
+              <div style="font-size:0.72rem;color:#8b949e;">Python functions with <code style="color:#f59e0b;">@tool</code> decorator. The LLM can call these.</div>
+            </div>
+            <div style="background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:14px;text-align:center;">
+              <div style="font-size:1.4rem;margin-bottom:6px;">🔄</div>
+              <div style="font-size:0.8rem;font-weight:700;color:#10b981;margin-bottom:4px;">ReAct Loop</div>
+              <div style="font-size:0.72rem;color:#8b949e;">Reason → Act → Observe — keeps running until the goal is met.</div>
+            </div>
+          </div>
+
+          <!-- Architecture Diagram -->
+          <div style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px;margin-bottom:16px;">
+            <div style="font-size:0.65rem;color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">Architecture Diagram</div>
+            <pre style="font-family:'JetBrains Mono',monospace;font-size:0.68rem;color:#8b949e;line-height:1.7;overflow-x:auto;">
+User Input (requirements text + config)
+          │
+          ▼
+  ┌──────────────────────────────────────────────┐
+  │            Strands Agent                      │
+  │  system_prompt: "You are DesignDocAgent..."   │
+  │  model: Claude 3.5 Sonnet (AWS Bedrock)       │
+  │                                               │
+  │  ┌─────────────────────────────────────────┐  │
+  │  │         ReAct Loop                      │  │
+  │  │  while goal_not_done:                   │  │
+  │  │    thought = llm.think(history+tools)   │  │
+  │  │    tool    = thought.pick_tool()        │  │
+  │  │    result  = execute(tool, args)        │  │
+  │  │    history.append(result)               │  │
+  │  └─────────────────────────────────────────┘  │
+  └──────────────────────────────────────────────┘
+          │
+          │  calls one of:
+          ├──▶ parse_requirements()    → structured JSON
+          ├──▶ generate_sections()     → Markdown sections
+          ├──▶ update_config()         → new config dict
+          ├──▶ refine_output()         → updated section
+          └──▶ export_document()       → .md file
+          │
+          ▼
+    Design Document (10 structured sections)</pre>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             SECTION 3: CODE WALKTHROUGH
+        ══════════════════════════════════════════ -->
+        <div class="learn-card" style="background:var(--card-bg,#161b22);border:1px solid var(--border,rgba(255,255,255,0.08));border-radius:12px;padding:28px;margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="font-size:1.6rem;">💻</span>
+            <h2 style="font-size:1.1rem;font-weight:700;">Code Walkthrough — Key Concepts</h2>
+          </div>
+
+          <!-- Code tabs -->
+          <div style="display:flex;gap:8px;margin-bottom:0;border-bottom:1px solid rgba(255,255,255,0.08);">
+            <button class="code-tab active" data-code="system_prompt" style="background:none;border:none;color:#3b82f6;font-size:0.75rem;font-weight:600;padding:6px 12px;cursor:pointer;border-bottom:2px solid #3b82f6;">System Prompt</button>
+            <button class="code-tab" data-code="tool_def" style="background:none;border:none;color:#8b949e;font-size:0.75rem;font-weight:600;padding:6px 12px;cursor:pointer;border-bottom:2px solid transparent;">@tool Decorator</button>
+            <button class="code-tab" data-code="agent_create" style="background:none;border:none;color:#8b949e;font-size:0.75rem;font-weight:600;padding:6px 12px;cursor:pointer;border-bottom:2px solid transparent;">Create Agent</button>
+            <button class="code-tab" data-code="react_loop" style="background:none;border:none;color:#8b949e;font-size:0.75rem;font-weight:600;padding:6px 12px;cursor:pointer;border-bottom:2px solid transparent;">ReAct Loop</button>
+          </div>
+
+          <div id="code-system_prompt" class="code-panel" style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:0 0 8px 8px;padding:16px;display:block;">
+<pre style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#8b949e;line-height:1.7;overflow-x:auto;"><span style="color:#6e7681;"># agent.py — The system prompt is the agent's "soul"</span>
+<span style="color:#6e7681;"># It defines: role, tools it has, output format, rules</span>
+
+<span style="color:#79c0ff;">SYSTEM_PROMPT</span> = <span style="color:#a5d6ff;">"""
+You are DesignDocAgent — a senior software architect.
+
+YOUR MISSION:
+  Given a requirements doc + config, produce a structured
+  Software Design Document (SDD).
+
+YOUR SKILLS (tools you can call):
+  1. parse_requirements   — extract structure from raw text
+  2. generate_sections    — write each doc section
+  3. update_config        — apply config changes
+  4. refine_output        — edit sections interactively
+  5. export_document      — write final .md file
+
+OUTPUT FORMAT:
+  ## 1. Executive Summary
+  ## 2. Problem Statement
+  ## 3. System Architecture
+  ... (10 sections total)
+
+RULES:
+  • If requirements are vague → ask clarifying questions
+  • If config changes → regenerate only affected sections
+  • Always end with: "✓ Doc ready. What to change?"
+"""</span></pre>
+          </div>
+
+          <div id="code-tool_def" class="code-panel" style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:0 0 8px 8px;padding:16px;display:none;">
+<pre style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#8b949e;line-height:1.7;overflow-x:auto;"><span style="color:#6e7681;"># A @tool is just a Python function.</span>
+<span style="color:#6e7681;"># The docstring IS the description the LLM sees.</span>
+<span style="color:#6e7681;"># The LLM reads it and decides WHEN to call this function.</span>
+
+<span style="color:#ff7b72;">from</span> <span style="color:#e6edf3;">strands</span> <span style="color:#ff7b72;">import</span> <span style="color:#e6edf3;">tool</span>
+
+<span style="color:#d2a8ff;">@tool</span>
+<span style="color:#ff7b72;">def</span> <span style="color:#79c0ff;">parse_requirements</span>(<span style="color:#e6edf3;">requirements_text</span>: <span style="color:#79c0ff;">str</span>) -> <span style="color:#79c0ff;">dict</span>:
+    <span style="color:#a5d6ff;">"""
+    Parse a requirements document and extract structured fields:
+    project name, stakeholders, functional requirements,
+    non-functional requirements, tech stack, and timeline.
+
+    Args:
+        requirements_text: Raw text of the requirements document
+    Returns:
+        A structured dictionary with parsed fields
+    """</span>
+    <span style="color:#6e7681;"># Your Python logic here</span>
+    parsed = {
+        <span style="color:#a5d6ff;">"project_name"</span>: extract_project_name(requirements_text),
+        <span style="color:#a5d6ff;">"functional_requirements"</span>: extract_bullets(requirements_text),
+        <span style="color:#a5d6ff;">"tech_stack"</span>: extract_tech(requirements_text),
+    }
+    <span style="color:#ff7b72;">return</span> parsed  <span style="color:#6e7681;"># Agent sees this as the "observation"</span></pre>
+          </div>
+
+          <div id="code-agent_create" class="code-panel" style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:0 0 8px 8px;padding:16px;display:none;">
+<pre style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#8b949e;line-height:1.7;overflow-x:auto;"><span style="color:#ff7b72;">from</span> <span style="color:#e6edf3;">strands</span> <span style="color:#ff7b72;">import</span> <span style="color:#e6edf3;">Agent</span>
+<span style="color:#ff7b72;">from</span> <span style="color:#e6edf3;">strands.models</span> <span style="color:#ff7b72;">import</span> <span style="color:#e6edf3;">BedrockModel</span>
+
+<span style="color:#6e7681;"># Create the model (Claude 3.5 via AWS Bedrock)</span>
+<span style="color:#79c0ff;">model</span> = BedrockModel(
+    model_id=<span style="color:#a5d6ff;">"claude-3-5-sonnet-20241022"</span>,
+    region_name=<span style="color:#a5d6ff;">"us-east-1"</span>,
+    streaming=<span style="color:#79c0ff;">True</span>  <span style="color:#6e7681;"># stream agent thoughts in real time</span>
+)
+
+<span style="color:#6e7681;"># Build the agent — attach system_prompt + all 5 tools</span>
+<span style="color:#79c0ff;">agent</span> = Agent(
+    system_prompt=<span style="color:#e6edf3;">SYSTEM_PROMPT</span>,
+    tools=[
+        parse_requirements,   <span style="color:#6e7681;"># @tool functions</span>
+        generate_sections,
+        update_config,
+        refine_output,
+        export_document
+    ],
+    model=<span style="color:#e6edf3;">model</span>,
+)
+
+<span style="color:#6e7681;"># Use the agent — it autonomously decides which tools to call</span>
+<span style="color:#79c0ff;">result</span> = agent(<span style="color:#a5d6ff;">"Generate a design doc for: AI Customer Support Bot"</span>)
+<span style="color:#6e7681;"># → agent thinks → calls parse_requirements → calls generate_sections → done</span></pre>
+          </div>
+
+          <div id="code-react_loop" class="code-panel" style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:0 0 8px 8px;padding:16px;display:none;">
+<pre style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#8b949e;line-height:1.7;overflow-x:auto;"><span style="color:#6e7681;"># What Strands does internally (simplified)</span>
+<span style="color:#6e7681;"># This is the ReAct (Reason + Act) loop</span>
+
+<span style="color:#ff7b72;">def</span> <span style="color:#79c0ff;">react_loop</span>(<span style="color:#e6edf3;">goal</span>: <span style="color:#79c0ff;">str</span>):
+    history = [system_prompt, user_message(goal)]
+    
+    <span style="color:#ff7b72;">while</span> <span style="color:#79c0ff;">True</span>:
+        <span style="color:#6e7681;"># REASON: LLM decides what to do next</span>
+        thought = llm.complete(history + tool_descriptions)
+        
+        <span style="color:#ff7b72;">if</span> thought.is_final_answer:
+            <span style="color:#ff7b72;">return</span> thought.content   <span style="color:#6e7681;"># ✓ Goal achieved</span>
+        
+        <span style="color:#6e7681;"># ACT: Execute the chosen tool</span>
+        tool_name = thought.tool_call.name
+        tool_args = thought.tool_call.arguments
+        result    = tools[tool_name](**tool_args)
+        
+        <span style="color:#6e7681;"># OBSERVE: Add result to history, loop again</span>
+        history.append(tool_result(tool_name, result))
+        
+        <span style="color:#6e7681;"># Example trace for our agent:</span>
+        <span style="color:#6e7681;"># Turn 1: Think → call parse_requirements(req_text)</span>
+        <span style="color:#6e7681;"># Turn 2: Think → call generate_sections(parsed, config)</span>
+        <span style="color:#6e7681;"># Turn 3: Think → "I have all sections, doc is ready"</span>
+        <span style="color:#6e7681;"># → returns final document</span></pre>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             SECTION 4: LIVE DEMO EMBED
+        ══════════════════════════════════════════ -->
+        <div class="learn-card" style="background:var(--card-bg,#161b22);border:1px solid rgba(59,130,246,0.3);border-radius:12px;padding:28px;margin-bottom:24px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:1.6rem;">🚀</span>
+              <h2 style="font-size:1.1rem;font-weight:700;">Live Demo — DesignDocAgent</h2>
+            </div>
+            <a href="../../agentic_strands/index.html" target="_blank"
+               style="background:#3b82f6;color:#fff;padding:7px 16px;border-radius:6px;font-size:0.78rem;font-weight:600;text-decoration:none;">
+              ↗ Open Full App
+            </a>
+          </div>
+
+          <p style="font-size:0.82rem;color:#8b949e;margin-bottom:16px;line-height:1.6;">
+            The interactive Design Doc Generator is embedded below. Type requirements, click Generate,
+            then chat with the agent to refine any section. Works in demo mode without a backend.
+          </p>
+
+          <div style="border:1px solid rgba(59,130,246,0.2);border-radius:8px;overflow:hidden;height:600px;">
+            <iframe src="../../agentic_strands/index.html"
+                    style="width:100%;height:100%;border:none;"
+                    title="DesignDocAgent — Live Demo">
+            </iframe>
+          </div>
+
+          <p style="font-size:0.72rem;color:#8b949e;margin-top:10px;text-align:center;">
+            💡 No backend required for demo mode. Run <code style="color:#f59e0b;">python app.py</code> from
+            <code style="color:#f59e0b;">E:/agentic_strands/</code> to connect to the real Strands agent.
+          </p>
+        </div>
+
+        <!-- ══════════════════════════════════════════
+             SECTION 5: PROJECT FILES
+        ══════════════════════════════════════════ -->
+        <div class="learn-card" style="background:var(--card-bg,#161b22);border:1px solid var(--border,rgba(255,255,255,0.08));border-radius:12px;padding:28px;margin-bottom:24px;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <span style="font-size:1.6rem;">📁</span>
+            <h2 style="font-size:1.1rem;font-weight:700;">Project Files</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;">
+            <div style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#f59e0b;margin-bottom:4px;">agent.py</div>
+              <div style="font-size:0.7rem;color:#8b949e;">Strands SDK agent with 5 tools, system prompt, and standalone demo</div>
+            </div>
+            <div style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#3b82f6;margin-bottom:4px;">app.py</div>
+              <div style="font-size:0.7rem;color:#8b949e;">Flask REST API — /generate, /chat, /config, /export</div>
+            </div>
+            <div style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#10b981;margin-bottom:4px;">index.html</div>
+              <div style="font-size:0.7rem;color:#8b949e;">Interactive UI — Input, Config, Chat tabs + live document rendering</div>
+            </div>
+            <div style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;">
+              <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:#8b949e;margin-bottom:4px;">requirements.txt</div>
+              <div style="font-size:0.7rem;color:#8b949e;">strands-agents, flask, flask-cors, boto3</div>
+            </div>
+          </div>
+          <div style="background:#0d1117;border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:14px;margin-top:14px;">
+            <div style="font-size:0.65rem;color:#f59e0b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Quick Start</div>
+            <pre style="font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:#8b949e;line-height:1.7;">cd E:/agentic_strands
+pip install -r requirements.txt
+python agent.py    # standalone demo
+python app.py      # full Flask server → http://localhost:5000</pre>
+          </div>
+        </div>
+
+      </div>
+
+      <style>
+        /* Code tab switcher */
+        .code-tab.active { color: #3b82f6 !important; border-bottom-color: #3b82f6 !important; }
+        .learn-card { transition: border-color 0.2s; }
+        .learn-card:hover { border-color: rgba(59,130,246,0.3) !important; }
+      </style>
+
+      <script>
+        // Code tab switcher
+        document.querySelectorAll('.code-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            const parent = tab.closest('.learn-card');
+            parent.querySelectorAll('.code-tab').forEach(t => {
+              t.classList.remove('active');
+              t.style.color = '#8b949e';
+              t.style.borderBottomColor = 'transparent';
+            });
+            parent.querySelectorAll('.code-panel').forEach(p => p.style.display = 'none');
+            tab.classList.add('active');
+            tab.style.color = '#3b82f6';
+            tab.style.borderBottomColor = '#3b82f6';
+            document.getElementById(`code-${tab.dataset.code}`).style.display = 'block';
+          });
+        });
+      </script>
+    </section>
+
+    <section class="page" id="contact">
+      <div class="page__inner">
+        <div class="section__eyebrow">CONTACT</div>
+        <h1 class="page__title">Let's connect_</h1>
+        <p class="page__desc">Open to Data Analyst, Business Analyst, and AI Engineer roles in Canada.</p>
+
+        <div class="contact-grid">
+          <a href="mailto:naranggarima351@gmail.com" class="contact-card">
+            <div class="contact-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-card__label">Email</div>
+            <div class="contact-card__val">naranggarima351@gmail.com</div>
+            <div class="contact-card__action">Send Email</div>
+          </a>
+
+          <a href="https://github.com/Narang-Garima" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div class="contact-card__label">GitHub</div>
+            <div class="contact-card__val">github.com/Narang-Garima</div>
+            <div class="contact-card__action">View GitHub</div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/garima-narang-canada/" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </div>
+            <div class="contact-card__label">LinkedIn</div>
+            <div class="contact-card__val">linkedin.com/in/garima-narang-canada</div>
+            <div class="contact-card__action">View LinkedIn</div>
+          </a>
+
+          <a href="https://medium.com/@garimanarang2407" target="_blank" rel="noopener" class="contact-card">
+            <div class="contact-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <div class="contact-card__label">Medium</div>
+            <div class="contact-card__val">@garimanarang2407</div>
+            <div class="contact-card__action">Read Articles</div>
+          </a>
+
+          <a href="#" class="contact-card" id="resumeCard">
+            <div class="contact-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <div class="contact-card__label">Resume</div>
+            <div class="contact-card__val">Download latest resume</div>
+            <div class="contact-card__action">Open Resume</div>
+          </a>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-extra">
+          <div class="contact-extra__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+14375663094">+1 437-566-3094</a>
+          </div>
+          <div class="contact-extra__item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Brampton, Ontario, Canada</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+  <script src="bg.js"></script>
+</body>
+</html>
